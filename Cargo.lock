@@ -290,7 +290,7 @@ dependencies = [
  "cargo-credential-macos-keychain",
  "cargo-credential-wincred",
  "cargo-platform 0.2.0",
- "cargo-util 0.2.18",
+ "cargo-util",
  "cargo-util-schemas",
  "clap",
  "clap_complete",
@@ -407,7 +407,7 @@ dependencies = [
  "cargo",
  "cargo-geiger-serde",
  "cargo-platform 0.1.9",
- "cargo-util 0.2.16",
+ "cargo-util",
  "cargo_metadata",
  "colored",
  "console",
@@ -455,29 +455,6 @@ version = "0.2.0"
 source = "git+https://github.com/rust-lang/cargo.git#cfa27f208f30478c6e35e96982cb7348de8449b2"
 dependencies = [
  "serde",
-]
-
-[[package]]
-name = "cargo-util"
-version = "0.2.16"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0b15bbe49616ee353fadadf6de5a24136f3fe8fdbd5eb0894be9f8a42c905674"
-dependencies = [
- "anyhow",
- "core-foundation",
- "filetime",
- "hex",
- "ignore",
- "jobserver",
- "libc",
- "miow",
- "same-file",
- "sha2",
- "shell-escape",
- "tempfile",
- "tracing",
- "walkdir",
- "windows-sys 0.59.0",
 ]
 
 [[package]]
@@ -544,9 +521,9 @@ dependencies = [
 
 [[package]]
 name = "cfg-expr"
-version = "0.10.3"
+version = "0.17.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0aacacf4d96c24b2ad6eb8ee6df040e4f27b0d0b39a5710c30091baa830485db"
+checksum = "8d4ba6e40bd1184518716a6e1a781bf9160e286d219ccdb8ab2612e74cfe4789"
 dependencies = [
  "smallvec",
 ]
@@ -2388,14 +2365,16 @@ dependencies = [
 
 [[package]]
 name = "krates"
-version = "0.11.0"
+version = "0.17.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a857d4b6450fbc2b85c03684b2beae51916a5a90e2fb5f9c2b8acc920ad29e49"
+checksum = "cd5bdd9794c39f6eb77da784fdcd065cc730a95fd0ca7d88ec945ed26c3c5109"
 dependencies = [
- "cargo_metadata",
+ "camino",
  "cfg-expr",
  "petgraph",
  "semver",
+ "serde",
+ "serde_json",
 ]
 
 [[package]]

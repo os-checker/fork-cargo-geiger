@@ -9,7 +9,7 @@ use super::{package_metrics, ScanMode, ScanParameters, ScanResult};
 
 use table::scan_forbid_to_table;
 
-use cargo::{CliError, Config};
+use cargo::{CliError, GlobalContext as Config};
 use cargo_geiger_serde::{QuickReportEntry, QuickSafetyReport};
 use cargo_metadata::PackageId;
 

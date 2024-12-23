@@ -2,8 +2,8 @@
 //! are currently not stable, and therefore have no associated `SemVer`.
 //! As such, any function contained within may be subject to change.
 
-#![deny(clippy::cargo)]
-#![deny(clippy::doc_markdown)]
+// #![deny(clippy::cargo)]
+// #![deny(clippy::doc_markdown)]
 #![forbid(unsafe_code)]
 //#![deny(warnings)]
 

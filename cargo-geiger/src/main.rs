@@ -21,7 +21,7 @@ use cargo_geiger::scan::{scan, FoundWarningsError, ScanResult};
 
 use cargo::core::shell::Shell;
 use cargo::util::important_paths;
-use cargo::{CliError, CliResult, Config};
+use cargo::{CliError, CliResult, GlobalContext as Config};
 
 const VERSION: Option<&'static str> = option_env!("CARGO_PKG_VERSION");
 

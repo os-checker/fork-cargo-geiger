@@ -17,7 +17,7 @@ use default::scan_unsafe;
 use forbid::scan_forbid_unsafe;
 
 use cargo::core::Workspace;
-use cargo::{CliError, Config};
+use cargo::{CliError, GlobalContext as Config};
 use cargo_geiger_serde::{
     CounterBlock, DependencyKind, PackageInfo, UnsafeInfo,
 };

@@ -12,7 +12,7 @@ use crate::args::Args;
 // only the terminal output..? That API would be dependent on cargo.
 use cargo::core::Workspace;
 use cargo::util::{important_paths, CargoResult};
-use cargo::Config;
+use cargo::GlobalContext as Config;
 use cargo_metadata::{CargoOpt, Metadata, MetadataCommand};
 use cargo_platform::Cfg;
 use krates::Builder as KratesBuilder;

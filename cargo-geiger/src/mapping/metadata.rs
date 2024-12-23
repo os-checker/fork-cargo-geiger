@@ -164,7 +164,8 @@ mod metadata_tests {
     use cargo::core::{
         Package, PackageId, PackageIdSpec, PackageSet, Resolve, Workspace,
     };
-    use cargo::{ops, CargoResult, Config};
+    use cargo::sources::SourceConfigMap;
+    use cargo::{ops, CargoResult, GlobalContext as Config};
     use krates::semver::VersionReq;
     use rstest::*;
     use std::path::PathBuf;
@@ -307,8 +308,10 @@ mod metadata_tests {
         config: &'a Config,
         package: &Package,
     ) -> CargoResult<PackageRegistry<'a>> {
-        let mut registry = PackageRegistry::new(config)?;
-        registry.add_sources(Some(package.package_id().source_id()))?;
+        let registry = PackageRegistry::new_with_source_config(
+            config,
+            SourceConfigMap::new(config)?,
+        )?;
         Ok(registry)
     }
 
@@ -335,13 +338,16 @@ mod metadata_tests {
             HasDevUnits::Yes,
             prev.as_ref(),
             None,
-            &[PackageIdSpec::from_package_id(package_id)],
+            &[PackageIdSpec::parse(&package_id.name()).unwrap()],
             true,
-            None,
         )?;
+        let gctx = workspace.gctx();
         let packages = ops::get_resolved_packages(
             &resolve,
-            PackageRegistry::new(workspace.config())?,
+            PackageRegistry::new_with_source_config(
+                gctx,
+                SourceConfigMap::new(gctx)?,
+            )?,
         )?;
         Ok((packages, resolve))
     }

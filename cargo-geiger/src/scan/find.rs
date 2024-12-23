@@ -8,7 +8,7 @@ use crate::scan::PackageMetrics;
 
 use super::{GeigerContext, ScanMode};
 
-use cargo::{CargoResult, CliError, Config};
+use cargo::{CargoResult, CliError, GlobalContext as Config};
 use cargo_metadata::PackageId;
 use geiger::find::find_unsafe_in_file;
 use geiger::{IncludeTests, RsFileMetrics, ScanFileError};

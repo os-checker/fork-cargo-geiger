@@ -2,7 +2,7 @@ use crate::args::Verbosity::{Normal, Quiet, Verbose};
 use crate::format::print_config::OutputFormat;
 
 use cargo::core::shell::ColorChoice;
-use cargo::{CliResult, Config};
+use cargo::{CliResult, GlobalContext};
 use pico_args::Arguments;
 use std::path::PathBuf;
 
@@ -184,7 +184,7 @@ impl Args {
     /// let mut config = Config::default().unwrap();
     /// args.update_config(&mut config);
     /// ```
-    pub fn update_config(&self, config: &mut Config) -> CliResult {
+    pub fn update_config(&self, config: &mut GlobalContext) -> CliResult {
         let target_dir = None; // Doesn't add any value for cargo-geiger.
         let cargo_config_verbosity = match self.verbosity {
             Quiet => 0,
@@ -393,7 +393,7 @@ pub mod args_tests {
             verbosity: input_verbosity,
             ..Default::default()
         };
-        let mut config = Config::default().unwrap();
+        let mut config = GlobalContext::default().unwrap();
         let update_config_result = args.update_config(&mut config);
 
         assert!(update_config_result.is_ok());
@@ -421,7 +421,7 @@ pub mod args_tests {
             offline,
             ..Default::default()
         };
-        let mut config = Config::default().unwrap();
+        let mut config = GlobalContext::default().unwrap();
         let update_config_result = args.update_config(&mut config);
 
         assert!(update_config_result.is_ok());
@@ -453,7 +453,7 @@ pub mod args_tests {
             offline,
             ..Default::default()
         };
-        let mut config = Config::default().unwrap();
+        let mut config = GlobalContext::default().unwrap();
         let update_config_result = args.update_config(&mut config);
 
         assert!(update_config_result.is_ok());
