@@ -18,7 +18,7 @@ use cargo::core::compiler::CompileMode;
 use cargo::core::resolver::features::CliFeatures;
 use cargo::core::Workspace;
 use cargo::ops::CompileOptions;
-use cargo::{CliError, Config};
+use cargo::{CliError, GlobalContext as Config};
 use cargo_geiger_serde::{ReportEntry, SafetyReport};
 use cargo_metadata::PackageId;
 

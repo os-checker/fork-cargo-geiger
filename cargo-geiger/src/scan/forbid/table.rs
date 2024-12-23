@@ -11,7 +11,7 @@ use crate::tree::TextTreeLine;
 use super::super::find::find_unsafe;
 use super::super::{ScanMode, ScanResult};
 
-use cargo::{CliError, Config};
+use cargo::{CliError, GlobalContext as Config};
 use cargo_metadata::PackageId;
 use colored::Colorize;
 

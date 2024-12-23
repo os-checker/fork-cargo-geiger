@@ -8,7 +8,7 @@ use cargo::core::Workspace;
 use cargo::ops;
 use cargo::ops::{CleanOptions, CompileOptions};
 use cargo::util::{interning::InternedString, CargoResult};
-use cargo::Config;
+use cargo::GlobalContext as Config;
 use cargo_util::paths;
 use geiger::RsFileMetrics;
 use std::collections::HashSet;
@@ -151,8 +151,8 @@ pub fn resolve_rs_file_deps(
     compile_options: &CompileOptions,
     workspace: &Workspace,
 ) -> Result<HashSet<PathBuf>, RsResolveError> {
-    let config = workspace.config();
-    let (pkg_set, _) = ops::resolve_ws(workspace)
+    let gctx = workspace.gctx();
+    let (pkg_set, _) = ops::resolve_ws(workspace, true)
         .map_err(|e| RsResolveError::Cargo(e.to_string()))?;
     let packages = pkg_set
         .package_ids()
@@ -162,7 +162,7 @@ pub fn resolve_rs_file_deps(
     // TODO: Figure out how this can be avoided to improve performance, clean
     // Rust builds are __slow__.
     let clean_options = CleanOptions {
-        config,
+        gctx,
         spec: packages,
         targets: vec![],
         profile_specified: false,
@@ -178,12 +178,7 @@ pub fn resolve_rs_file_deps(
 
     let inner_arc = Arc::new(Mutex::new(CustomExecutorInnerContext::default()));
     {
-        compile_with_exec(
-            compile_options,
-            config,
-            inner_arc.clone(),
-            workspace,
-        )?;
+        compile_with_exec(compile_options, gctx, inner_arc.clone(), workspace)?;
     }
 
     let workspace_root = workspace.root().to_path_buf();
