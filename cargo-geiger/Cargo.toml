@@ -15,7 +15,7 @@ maintenance = { status = "experimental" }
 
 [dependencies]
 anyhow = "1.0.70"
-cargo = { git = "https://github.com/rust-lang/rust.git" }
+cargo = { git = "https://github.com/rust-lang/cargo.git" }
 cargo-geiger-serde = { path = "../cargo-geiger-serde", version = "0.2.3" }
 cargo_metadata = "0.15.4"
 cargo-platform = "0.1.2"
